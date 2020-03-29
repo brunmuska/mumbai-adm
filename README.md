@@ -7,6 +7,9 @@ This Repository contains
 3. Slum clusters map extracted from [http://www.sra.gov.in/upload/MUMABI_CA_MAP_MUMBAI_GLOBAL_42X72_SLUMCLUSTER.pdf]
 ====
 
+
+If you are using this dataset, cite in this style **Source: Sarpotdar,(2020)**
+
 License
 
 The dataset is created by Amish Sarpotdar, Doctoral Researcher at the University of Manchester and is shared under Creative Commons Attribution-ShareAlike 2.5 India license. The orignal dataset is attributed to Pune chapter of the DataMeet Trust, Bangalore, India and shared under Creative Commons Attribution-ShareAlike 2.5 India license.
