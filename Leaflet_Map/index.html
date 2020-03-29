@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1507px;
+            height: 835px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/BMC_Wards_0.js"></script>
+        <script src="data/slumClusters_1.js"></script>
+        <script src="data/BMC_Wards_2.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+            map.setMaxBounds(map.getBounds());
+        }
+        function pop_BMC_Wards_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Ward Number</strong><br />' + (feature.properties['NAME'] !== null ? Autolinker.link(String(feature.properties['NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WARD_NAME'] !== null ? Autolinker.link(String(feature.properties['WARD_NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Ward Name</strong><br />' + (feature.properties['HPI_Mumbai HPI_GM_Ward_ Ward Name'] !== null ? Autolinker.link(String(feature.properties['HPI_Mumbai HPI_GM_Ward_ Ward Name'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Administrative Zone</strong><br />' + (feature.properties['HPI_Mumbai HPI_GM_Ward_Adm Zone'] !== null ? Autolinker.link(String(feature.properties['HPI_Mumbai HPI_GM_Ward_Adm Zone'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BMC_Wards_0_0(feature) {
+            if (feature.properties['q2wHide_HPI_Mumbai HPI_GM_Ward_Jan-March 2015 Index'] >= 178.000000 && feature.properties['q2wHide_HPI_Mumbai HPI_GM_Ward_Jan-March 2015 Index'] <= 231.000000 ) {
+                return {
+                pane: 'pane_BMC_Wards_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,212,178,1.0)',
+            }
+            }
+            if (feature.properties['q2wHide_HPI_Mumbai HPI_GM_Ward_Jan-March 2015 Index'] >= 231.000000 && feature.properties['q2wHide_HPI_Mumbai HPI_GM_Ward_Jan-March 2015 Index'] <= 260.000000 ) {
+                return {
+                pane: 'pane_BMC_Wards_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,164,135,1.0)',
+            }
+            }
+            if (feature.properties['q2wHide_HPI_Mumbai HPI_GM_Ward_Jan-March 2015 Index'] >= 260.000000 && feature.properties['q2wHide_HPI_Mumbai HPI_GM_Ward_Jan-March 2015 Index'] <= 284.000000 ) {
+                return {
+                pane: 'pane_BMC_Wards_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(235,54,42,1.0)',
+            }
+            }
+            if (feature.properties['q2wHide_HPI_Mumbai HPI_GM_Ward_Jan-March 2015 Index'] >= 284.000000 && feature.properties['q2wHide_HPI_Mumbai HPI_GM_Ward_Jan-March 2015 Index'] <= 510.000000 ) {
+                return {
+                pane: 'pane_BMC_Wards_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(103,0,13,1.0)',
+            }
+            }
+        }
+        map.createPane('pane_BMC_Wards_0');
+        map.getPane('pane_BMC_Wards_0').style.zIndex = 400;
+        map.getPane('pane_BMC_Wards_0').style['mix-blend-mode'] = 'normal';
+        var layer_BMC_Wards_0 = new L.geoJson(json_BMC_Wards_0, {
+            attribution: '',
+            pane: 'pane_BMC_Wards_0',
+            onEachFeature: pop_BMC_Wards_0,
+            style: style_BMC_Wards_0_0,
+        });
+        bounds_group.addLayer(layer_BMC_Wards_0);
+        map.addLayer(layer_BMC_Wards_0);
+        function pop_slumClusters_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_slumClusters_1_0() {
+            return {
+                pane: 'pane_slumClusters_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+            }
+        }
+        map.createPane('pane_slumClusters_1');
+        map.getPane('pane_slumClusters_1').style.zIndex = 401;
+        map.getPane('pane_slumClusters_1').style['mix-blend-mode'] = 'normal';
+        var layer_slumClusters_1 = new L.geoJson(json_slumClusters_1, {
+            attribution: '',
+            pane: 'pane_slumClusters_1',
+            onEachFeature: pop_slumClusters_1,
+            style: style_slumClusters_1_0,
+        });
+        bounds_group.addLayer(layer_slumClusters_1);
+        map.addLayer(layer_slumClusters_1);
+        function pop_BMC_Wards_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WARD_NAME'] !== null ? Autolinker.link(String(feature.properties['WARD_NAME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AZONE'] !== null ? Autolinker.link(String(feature.properties['AZONE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PZONE'] !== null ? Autolinker.link(String(feature.properties['PZONE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PZONENAME'] !== null ? Autolinker.link(String(feature.properties['PZONENAME'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BMC_Wards_2_0() {
+            return {
+                pane: 'pane_BMC_Wards_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(225,89,137,0.0)',
+            }
+        }
+        map.createPane('pane_BMC_Wards_2');
+        map.getPane('pane_BMC_Wards_2').style.zIndex = 402;
+        map.getPane('pane_BMC_Wards_2').style['mix-blend-mode'] = 'normal';
+        var layer_BMC_Wards_2 = new L.geoJson(json_BMC_Wards_2, {
+            attribution: '',
+            pane: 'pane_BMC_Wards_2',
+            onEachFeature: pop_BMC_Wards_2,
+            style: style_BMC_Wards_2_0,
+        });
+        bounds_group.addLayer(layer_BMC_Wards_2);
+        map.addLayer(layer_BMC_Wards_2);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/BMC_Wards_2.png" /> BMC_Wards': layer_BMC_Wards_2,'<img src="legend/slumClusters_1.png" /> slumClusters': layer_slumClusters_1,'BMC_Wards<br /><table><tr><td style="text-align: center;"><img src="legend/BMC_Wards_0_1782310.png" /></td><td> 178 - 231 </td></tr><tr><td style="text-align: center;"><img src="legend/BMC_Wards_0_2312321.png" /></td><td> 231 - 232 </td></tr><tr><td style="text-align: center;"><img src="legend/BMC_Wards_0_2322842.png" /></td><td> 232 - 284 </td></tr><tr><td style="text-align: center;"><img src="legend/BMC_Wards_0_2845103.png" /></td><td> 284 - 510 </td></tr></table>': layer_BMC_Wards_0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
